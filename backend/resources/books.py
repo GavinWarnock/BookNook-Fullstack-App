@@ -1,7 +1,7 @@
 from flask import request
 from flask_jwt_extended import jwt_required, get_jwt_identity, verify_jwt_in_request
 from flask_restful import Resource
-from database.models import db, Favorite
+from database.models import db, Favorite, Review
 from database.schemas import review_schema, reviews_schema, favorite_schema, favorites_schema
 class UserReviewsResource(Resource):
     
@@ -33,3 +33,17 @@ class UserFavoritesResource(Resource):
         db.session.add(new_favorite)
         db.session.commit()
         return favorite_schema.dump(new_favorite), 201
+    
+class GetBooksInformationResource(Resource):
+    def get(self, book_id):
+        specific_book = Review.query.filter_by(book_id = book_id)
+        reviews = []
+        ratings = []
+        for review in specific_book:
+            reviews.append(review.reviews_text)
+            ratings.append(review.rating)
+        average_rating = (sum(ratings))/len(ratings)
+        json = {
+            "reviews":reviews,
+            "ratings":average_rating
+        }
