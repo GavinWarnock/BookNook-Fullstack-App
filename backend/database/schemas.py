@@ -59,3 +59,16 @@ cars_schema = CarSchema(many=True)
 
 
 # TODO: Add your schemas below
+class ReviewSchema(ma.Schema):
+    id = fields.Integer(primary_key=True)
+    book_id = fields.String(required=True)
+    text = fields.String(required=True)
+    rating = fields.Integer()
+    user_id = fields.Integer()
+    user = ma.Nested(UserSchema, many=False)
+
+    class Meta:
+        fields = ("id", "book_id", "text", "rating", "user_id", "user")
+
+review_schema = ReviewSchema()
+reviews_schema = ReviewSchema(many=True)
