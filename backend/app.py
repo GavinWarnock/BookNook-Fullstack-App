@@ -30,7 +30,7 @@ def create_app():
     # Loads config properties from .env file
     app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('SQLALCHEMY_DATABASE_URI')
     app.config['JWT_SECRET_KEY'] = environ.get('JWT_SECRET_KEY')
-    print(app.config['JWT_Secret_Key'])
+   
 
     # Registers all routes with API
     api = create_routes()
