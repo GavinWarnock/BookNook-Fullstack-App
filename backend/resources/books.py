@@ -63,3 +63,18 @@ class GetBooksInformationResource(Resource):
             "ratings": average_rating,
             "is_favorited": is_favorited
         }
+        return response_dict, 200
+
+class ReviewDetailResource(Resource):
+    @jwt_required()
+    def put(self, book_id):
+        user_id = get_jwt_identity
+        review_from_db = Review.query.get_or_404(book_id)
+        if 'book_id' in request.json:
+            review_from_db.book_id = request.json['book_id']
+        if 'text' in request.json:
+            review_from_db.text = request.json['text']
+        if 'rating' in request.json:
+            review_from_db.rating = request.json['rating']
+        db.session.commit()
+        return review_schema.dump(review_from_db), 200
