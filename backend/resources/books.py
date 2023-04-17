@@ -67,9 +67,9 @@ class GetBooksInformationResource(Resource):
 
 class ReviewDetailResource(Resource):
     @jwt_required()
-    def put(self, book_id):
+    def put(self, review_id):
         user_id = get_jwt_identity()
-        review_from_db = Review.query.get_or_404(book_id)
+        review_from_db = Review.query.get_or_404(review_id)
         if 'book_id' in request.json:
             review_from_db.book_id = request.json['book_id']
         if 'text' in request.json:
