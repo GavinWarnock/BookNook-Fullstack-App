@@ -35,15 +35,32 @@ class UserFavoritesResource(Resource):
         return favorite_schema.dump(new_favorite), 201
     
 class GetBooksInformationResource(Resource):
+    @jwt_required()
     def get(self, book_id):
-        specific_book = Review.query.filter_by(book_id = book_id)
+        user_id = get_jwt_identity()
+        specific_book = Review.query.filter_by(book_id=book_id).all()
         reviews = []
         ratings = []
+        is_favorited = False
+
+        # Get all reviews for the specific book and calculate average rating
         for review in specific_book:
-            reviews.append(review.reviews_text)
+            reviews.append(review.text)
             ratings.append(review.rating)
-        average_rating = (sum(ratings))/len(ratings)
-        json = {
-            "reviews":reviews,
-            "ratings":average_rating
+        if len(ratings) > 0:
+            average_rating = sum(ratings) / len(ratings)
+        else:
+            average_rating = 0
+
+        # Check if the logged-in user has favorited the book
+        favorite = Favorite.query.filter_by(user_id=user_id, book_id=book_id).first()
+        if favorite:
+            is_favorited = True
+
+        # Construct the response dictionary
+        response_dict = {
+            "reviews": reviews,
+            "ratings": average_rating,
+            "is_favorited": is_favorited
         }
+        return response_dict, 200
