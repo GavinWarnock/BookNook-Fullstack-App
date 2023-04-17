@@ -63,4 +63,3 @@ class GetBooksInformationResource(Resource):
             "ratings": average_rating,
             "is_favorited": is_favorited
         }
-        return response_dict, 200

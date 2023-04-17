@@ -70,7 +70,7 @@ class ReviewSchema(ma.Schema):
     class Meta:
         fields = ("id", "book_id", "text", "rating", "user_id", "user")
     @post_load
-    def create_review(self, data, **kawrgs):
+    def create_review(self, data, **kwargs):
         return Review(**data)
 
 review_schema = ReviewSchema()
