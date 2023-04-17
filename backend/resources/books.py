@@ -47,3 +47,24 @@ class GetBooksInformationResource(Resource):
             "reviews":reviews,
             "ratings":average_rating
         }
+        try: 
+            verify_jwt_in_request()
+            user = get_jwt_identity()
+            test = db.session.query(Favorite).filter(
+            Favorite.user_id.like(user),
+            Favorite.book_id.like(book_id)
+            ).first()
+            if test:
+                json["Favorited"] = True
+            else:
+                json["Favorited"] = False
+        except:
+            json["Favorited"] = "not logged in"
+        
+        return json, 200
+        
+
+class ReviewDetailResource(Resource):
+    @jwt_required()
+    def put(self, book_id):
+        pass

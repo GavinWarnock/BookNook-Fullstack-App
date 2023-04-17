@@ -30,6 +30,7 @@ def create_app():
     # Loads config properties from .env file
     app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('SQLALCHEMY_DATABASE_URI')
     app.config['JWT_SECRET_KEY'] = environ.get('JWT_SECRET_KEY')
+    print(app.config['JWT_Secret_Key'])
 
     # Registers all routes with API
     api = create_routes()
@@ -56,7 +57,7 @@ def create_routes():
     api.add_resource(AllCarResource, '/api/cars')
     api.add_resource(UserCarResource, '/api/user_cars')
     # TODO: Create files for your Resources in resources folder, add them here
-    api.add_resource(UserReviewsResource, '/api/user_reviews')
-    api.add_resource(UserFavoritesResource, '/api/user_favorites')
-    api.add_resource(GetBooksInformationResource, '/api/info/<string.book_id>')
+    api.add_resource(UserReviewsResource, '/api/user_reviews/')
+    api.add_resource(UserFavoritesResource, '/api/user_favorites/')
+    api.add_resource(GetBooksInformationResource, '/api/info/<string:book_id>')
     return api
