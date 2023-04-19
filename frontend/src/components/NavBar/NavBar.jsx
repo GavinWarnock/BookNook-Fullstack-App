@@ -21,8 +21,9 @@ const Navbar = () => {
             <i class="fa fa-caret-down"></i>
           </button>
           <div class="dropdown-content">
-            <a href="#home">Home</a>
-            <a href="#Search">Search</a>
+            <Link to="/home">Home</Link>
+            <Link to="/search">Search</Link>
+            <a href="favorites">Favorites</a>
             {user ? (
               <a onClick={logoutUser}>Logout</a>
             ) : (
