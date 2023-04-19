@@ -1,6 +1,7 @@
 import React from 'react';
 import "./SearchBar.css"
 
+
 const SearchBar = ({ searchTerm ='', setSearchTerm, handleSubmit })=> {
     return(
         <form onSubmit={(e) => handleSubmit(e)} className='searchForm'>
@@ -8,7 +9,7 @@ const SearchBar = ({ searchTerm ='', setSearchTerm, handleSubmit })=> {
                 value={searchTerm}
                 onChange={(e)=> setSearchTerm(e.target.value)}
             />
-            <button type='submit'>Search</button>
+            <button type='submit' >Get All Books</button>
         </form>
      );
 }
