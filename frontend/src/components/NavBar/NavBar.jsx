@@ -15,12 +15,20 @@ const Navbar = () => {
             <b>Quills and Swords</b>
           </Link>
         </li>
-        <li>
-          {user ? (
-            <button onClick={logoutUser}>Logout</button>
-          ) : (
-            <button onClick={() => navigate("/login")}>Login</button>
-          )}
+       
+        <li class="dropdown">
+          <button class="dropbtn">Menu
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="#home">Home</a>
+            <a href="#Search">Search</a>
+            {user ? (
+              <a onClick={logoutUser}>Logout</a>
+            ) : (
+              <a onClick={() => navigate("/login")}>Login</a>
+            )}
+          </div>
         </li>
       </ul>
     </div>
