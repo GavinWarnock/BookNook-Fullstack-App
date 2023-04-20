@@ -9,6 +9,7 @@ const ResultsList = ({ searchResults }) => {
         <Link key={book.id} to={`/details/${book.id}`}>
           <div>
             <h3>{book?.volumeInfo.title}</h3>
+            <img src={book.volumeInfo.imageLinks.smallThumbnail}/>
           </div>
         </Link>
       ))}

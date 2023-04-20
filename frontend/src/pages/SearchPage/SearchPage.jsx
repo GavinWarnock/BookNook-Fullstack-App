@@ -88,7 +88,7 @@ const SearchPage = () => {
     try {
       let lowerCaseSearchTerm = searchTerm.toLowerCase();
       let response = await axios.get(
-        `https://www.googleapis.com/books/v1/volumes?q=${lowerCaseSearchTerm}&maxResults=35`
+        `https://www.googleapis.com/books/v1/volumes?q=${lowerCaseSearchTerm}&maxResults=20`
       );
       setSearchResults(response.data.items);
     } catch (error) {
