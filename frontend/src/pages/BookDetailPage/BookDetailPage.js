@@ -34,6 +34,9 @@ const BookDetailPage = () => {
       ) : (
         <div>
            <img src={bookDetails.volumeInfo.imageLinks.smallThumbnail} alt={bookDetails.volumeInfo.title}/>
+           <p>Description: {bookDetails.volumeInfo.description}</p>
+           <p>Rating: {bookDetails.volumeInfo.averageRating}</p>
+           
         </div>)}
     </div>
   );
