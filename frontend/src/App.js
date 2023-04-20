@@ -31,7 +31,7 @@ function App() {
         />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/details" element={<BookDetailPage />} />
+        <Route path="/details/:bookid" element={<BookDetailPage />} />
         <Route path="/search" element={<SearchPage />} />
       </Routes>
       <Footer />

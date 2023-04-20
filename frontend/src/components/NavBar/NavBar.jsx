@@ -16,14 +16,14 @@ const Navbar = () => {
           </Link>
         </li>
        
-        <li class="dropdown">
-          <button class="dropbtn">Menu
-            <i class="fa fa-caret-down"></i>
+        <li className="dropdown">
+          <button className="dropbtn">Menu
+            <i className="fa fa-caret-down"></i>
           </button>
-          <div class="dropdown-content">
+          <div className="dropdown-content">
             <Link to="/home">Home</Link>
             <Link to="/search">Search</Link>
-            <a href="favorites">Favorites</a>
+            <Link to="/favorites">Favorites</Link>
             {user ? (
               <a onClick={logoutUser}>Logout</a>
             ) : (

@@ -1,16 +1,12 @@
 import React from 'react';
 import "./BookDetailPage.css";
+import { useParams } from 'react-router-dom';
 
 const BookDetailPage = ({ searchResults }) => {
+    const {bookid} = useParams()
     return (  
         <div className='resultsList'>
             <h2>Here is where your book search is displayed</h2>
-            {searchResults.map((books,index)=>(
-                <div key={index}>
-                    {/* Need to check this name later */}
-                    <h3>{books.book.name}</h3>
-                </div>
-            ))}
         </div>
     );
 }
