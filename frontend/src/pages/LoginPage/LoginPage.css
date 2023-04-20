@@ -1,11 +1,13 @@
+/* @import url(./frontend/src/Assets/Library.jpg);
+
+*{
+  background-image: url(./frontend/src/Assets/Library.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+} */
+
 .error {
   color: red;
 }
 
-/* .container1{
-  background-image: url(./C:\Users\coach\Downloads\Library.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 100vh;
-}
-@import url(./C:\Users\coach\Downloads\Library.jpg) */
