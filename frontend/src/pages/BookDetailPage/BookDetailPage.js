@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "./BookDetailPage.css";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
@@ -15,6 +14,7 @@ const BookDetailPage = () => {
         `https://www.googleapis.com/books/v1/volumes/${bookid}`
       );
       setBookDetails(response.data);
+      console.log(response.data);
       setIsLoading(false)
     } catch (error) {
       console.log("Error in fetchBooksDetails:", error);
@@ -28,12 +28,12 @@ const BookDetailPage = () => {
 
   return (
     <div className="resultsList">
-      <h2>{bookDetails.volumeInfo.title} Details </h2>
       {isLoading ? (
         <div>Loading...</div>
       ) : (
         <div>
-           <img src={bookDetails.volumeInfo.imageLinks.smallThumbnail} alt={bookDetails.volumeInfo.title}/>
+          <h2>{bookDetails.volumeInfo.title} Details </h2>
+           <img src={bookDetails.volumeInfo.imageLinks.small} alt={bookDetails.volumeInfo}/>
            <p>Description: {bookDetails.volumeInfo.description}</p>
            <p>Rating: {bookDetails.volumeInfo.averageRating}</p>
            

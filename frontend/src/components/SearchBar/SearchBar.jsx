@@ -1,5 +1,4 @@
 import React from 'react';
-import "./SearchBar.css"
 
 
 const SearchBar = ({ searchTerm ='', setSearchTerm, handleSubmit })=> {
@@ -8,8 +7,9 @@ const SearchBar = ({ searchTerm ='', setSearchTerm, handleSubmit })=> {
             <input
                 value={searchTerm}
                 onChange={(e)=> setSearchTerm(e.target.value)}
+                style={{ marginRight: '1em' }}
             />
-            <button type='submit' >Get All Books</button>
+            <button type='submit' className='searchButton'>Get All Books</button>
         </form>
      );
 }

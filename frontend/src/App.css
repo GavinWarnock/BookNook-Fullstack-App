@@ -56,3 +56,12 @@ button:hover {
   padding: 3px 7px;
   font-size: 17px;
 }
+
+.searchButton{
+  font-size: 12px;
+  padding: 0.25em 0.25em;
+}
+
+h1{
+  color: steelblue;
+}
