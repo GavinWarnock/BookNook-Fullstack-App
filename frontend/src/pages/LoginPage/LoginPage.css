@@ -1,7 +1,7 @@
-/* @import url(./frontend/src/Assets/Library.jpg);
 
-*{
-  background-image: url(./frontend/src/Assets/Library.jpg);
+
+/* .loginPage{
+  background-image: url("../../Assets/Library.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
