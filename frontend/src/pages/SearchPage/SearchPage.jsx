@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import SearchBar from "../../components/SearchBar/SearchBar";
 //Need to import Results List Here//
 import "./SearchPage.css";
@@ -7,7 +7,7 @@ import ResultsList from "../../components/ResultsList/ResultsList";
 
 const SearchPage = () => {
   const [searchTerm, setSearchTerm] = useState("Harry Potter");
-  const [searchResults, setSearchResults] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
   //ToDo: Create Axios request to fetch book information based on search term
   const fetchBooks = async () => {
     try {
@@ -35,7 +35,7 @@ const SearchPage = () => {
         setSearchTerm={setSearchTerm}
         handleSubmit={handleSubmit}
       />
-      {/* <ResultsList searchResults={searchResults} /> */}
+      <ResultsList searchResults={searchResults} />
     </div>
     
   );
