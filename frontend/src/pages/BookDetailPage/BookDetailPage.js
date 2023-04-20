@@ -28,12 +28,12 @@ const BookDetailPage = () => {
 
   return (
     <div className="resultsList">
-      <h2>Details {bookid} </h2>
+      <h2>{bookDetails.volumeInfo.title} Details </h2>
       {isLoading ? (
         <div>Loading...</div>
       ) : (
         <div>
-            Description: {bookDetails.volumeInfo.title}
+           <img src={bookDetails.volumeInfo.imageLinks.smallThumbnail} alt={bookDetails.volumeInfo.title}/>
         </div>)}
     </div>
   );
