@@ -13,7 +13,7 @@ const BookReviewList = ({ bookid }) => {
   const fetchReviews = async () => {
     try {
       let response = await axios.get(
-        `http://127.0.0.1:5000/api/user_reviews/${bookid}`,
+        `http://127.0.0.1:5000/api/info/${bookid}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -29,7 +29,7 @@ const BookReviewList = ({ bookid }) => {
   const addReview = async () => {
     try {
       let response = await axios.post(
-        "http://127.0.0.1:5000/api/user_reviews",
+        `http://127.0.0.1:5000/api/user_reviews`,
         {
           book_id: bookid,
           text: reviewText,
@@ -61,7 +61,7 @@ const BookReviewList = ({ bookid }) => {
       ) : (
         <div>
           <h2>User Reviews</h2>
-          <ul>
+          <ul className="reviewContainer">
             {reviews.map((review, index) => (
               <li key={index}>{review}</li>
             ))}

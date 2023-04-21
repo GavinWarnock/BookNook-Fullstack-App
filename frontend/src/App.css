@@ -105,3 +105,11 @@ h1{
 .Description{
   font-size: var(--sm-text);
 }
+
+.reviewContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2px 16px;
+  margin-top: 10px;
+}

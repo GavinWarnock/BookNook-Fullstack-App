@@ -41,7 +41,7 @@ const BookDetailPage = () => {
           />
           <p>Authors: {bookDetails.volumeInfo.authors}</p>
           <p className='description' dangerouslySetInnerHTML={{ __html: bookDetails.volumeInfo.description }} />
-          <BookReviewList bookId={bookid} token={token} />
+          <BookReviewList bookid={bookid} token={token} />
         </div>
       )}
     </div>
