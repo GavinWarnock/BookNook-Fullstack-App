@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import SearchBar from "../../components/SearchBar/SearchBar";
-//Need to import Results List Here//
-import "./SearchPage.css";
 import axios from "axios";
 import ResultsList from "../../components/ResultsList/ResultsList";
 
