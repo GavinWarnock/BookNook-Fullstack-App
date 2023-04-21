@@ -85,3 +85,4 @@ class ReviewDetailResource(Resource):
         db.session.delete(review_from_db)
         db.session.commit()
         return "", 204
+    
