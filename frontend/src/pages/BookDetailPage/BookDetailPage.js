@@ -8,6 +8,7 @@ const BookDetailPage = () => {
   const { bookid } = useParams();
   const [bookDetails, setBookDetails] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [isFavorite, setIsFavorite] = useState(false);
   const { token } = useContext(AuthContext);
 
   const fetchBookDetails = async () => {
@@ -24,28 +25,57 @@ const BookDetailPage = () => {
 
   const postFavorites = async () => {
     try {
-      await axios.post(
-        "http://127.0.0.1:5000/api/user_favorites",
-        {
-          book_id:bookid,
-          title: bookDetails.volumeInfo.title,
-          thumbnail_url: bookDetails.volumeInfo.imageLinks.small,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
+      if (isFavorite) {
+        // remove from favorites
+        await axios.delete(
+          `http://127.0.0.1:5000/api/user_favorites/${bookid}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setIsFavorite(false);
+      } else {
+        // add to favorites
+        await axios.post(
+          "http://127.0.0.1:5000/api/user_favorites",
+          {
+            book_id: bookid,
+            title: bookDetails.volumeInfo.title,
+            thumbnail_url: bookDetails.volumeInfo.imageLinks.small,
           },
-        }
-      );
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setIsFavorite(true);
+      }
     } catch (error) {
       console.log("Error in postFavorites:", error);
     }
-  }
-
-
+  };
 
   useEffect(() => {
+    const checkFavorite = async () => {
+      try {
+        let response = await axios.get(
+          `http://127.0.0.1:5000/api/user_favorites/${bookid}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setIsFavorite(true);
+      } catch (error) {
+        setIsFavorite(false);
+      }
+    };
     fetchBookDetails();
+    checkFavorite();
   }, []);
 
   return (
@@ -60,8 +90,13 @@ const BookDetailPage = () => {
             alt={bookDetails.volumeInfo}
           />
           <p>Authors: {bookDetails.volumeInfo.authors}</p>
-          <p className='description' dangerouslySetInnerHTML={{ __html: bookDetails.volumeInfo.description }} />
-          <button onClick={postFavorites}>Add to Favorites</button>
+          <p
+            className="description"
+            dangerouslySetInnerHTML={{ __html: bookDetails.volumeInfo.description }}
+          />
+          <button onClick={postFavorites}>
+            {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
+          </button>
           <BookReviewList bookid={bookid} token={token} />
         </div>
       )}
