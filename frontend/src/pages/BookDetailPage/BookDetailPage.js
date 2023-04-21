@@ -84,10 +84,10 @@ const BookDetailPage = () => {
         <div>Loading...</div>
       ) : (
         <div>
-          <h2>{bookDetails.volumeInfo.title} Details </h2>
+          <h2>{bookDetails.volumeInfo.title}</h2>
           <img
             src={bookDetails.volumeInfo.imageLinks.small}
-            alt={bookDetails.volumeInfo}
+            alt="bookPhoto"
           />
           <p>Authors: {bookDetails.volumeInfo.authors}</p>
           <p
