@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import {HeartFill} from "react-bootstrap-icons";
 
 const FavoriteBooks=({auth}) => {
 
@@ -27,11 +28,11 @@ const FavoriteBooks=({auth}) => {
             {favorites.length > 0 ?
             favorites.map((bookDetails, index) => {
             return(
-                <Link key={index} to={`/details/${bookDetails.book_id}`}>
+                <Link key={index} to={`/detail/${bookDetails.book_id}`}>
                     <div className='favorite-card'>
                         <img src={bookDetails.thumbnail_url} alt={`${bookDetails.title}`} />
                         <h2>{bookDetails.title}</h2>
-                        <button>{'<3'}</button>
+                        <button><HeartFill />{' '}</button>
                     </div>
                 </Link>
             )
