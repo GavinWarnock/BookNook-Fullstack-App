@@ -33,7 +33,7 @@ const BookDetailPage = () => {
         },
         {
           headers: {
-            Authorization: auth,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
