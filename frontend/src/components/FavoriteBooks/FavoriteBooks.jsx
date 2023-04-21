@@ -24,12 +24,12 @@ const FavoriteBooks=({auth}) => {
           };
 
     return (
-        <div>
+        <div className='resultsContainer'>
             {favorites.length > 0 ?
             favorites.map((bookDetails, index) => {
             return(
                 <Link key={index} to={`/detail/${bookDetails.book_id}`}>
-                    <div className='favorite-card'>
+                    <div className='resultsCard'>
                         <img src={bookDetails.thumbnail_url} alt={`${bookDetails.title}`} />
                         <h2>{bookDetails.title}</h2>
                         <button><HeartFill />{' '}</button>
