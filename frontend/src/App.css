@@ -101,3 +101,7 @@ h1{
   justify-content: center;
   height: 100%;
 }
+
+.Description{
+  font-size: var(--sm-text);
+}

@@ -59,7 +59,7 @@ const BookDetailPage = () => {
             src={bookDetails.volumeInfo.imageLinks.small}
             alt={bookDetails.volumeInfo}
           />
-          <p>Description: {bookDetails.volumeInfo.description}</p>
+          <p className='description' dangerouslySetInnerHTML={{ __html: bookDetails.volumeInfo.description }} />
           <p>Rating: {bookDetails.volumeInfo.averageRating}</p>
           {isReviewing ? (
             <div>
