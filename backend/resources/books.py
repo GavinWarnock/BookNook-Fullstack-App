@@ -34,6 +34,7 @@ class UserFavoritesResource(Resource):
         db.session.commit()
         return favorite_schema.dump(new_favorite), 201
     
+    
 class GetBooksInformationResource(Resource):
     @jwt_required()
     def get(self, book_id):
