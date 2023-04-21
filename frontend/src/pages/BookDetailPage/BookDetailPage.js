@@ -22,6 +22,26 @@ const BookDetailPage = () => {
     }
   };
 
+  const postFavorites = async () => {
+    try {
+      await axios.post(
+        "http://127.0.0.1:5000/api/user_favorites",
+        {
+          book_id:bookid,
+          title: bookDetails.volumeInfo.title,
+          thumbnail_url: bookDetails.volumeInfo.imageLinks.small,
+        },
+        {
+          headers: {
+            Authorization: auth,
+          },
+        }
+      );
+    } catch (error) {
+      console.log("Error in postFavorites:", error);
+    }
+  }
+
 
 
   useEffect(() => {
@@ -41,6 +61,7 @@ const BookDetailPage = () => {
           />
           <p>Authors: {bookDetails.volumeInfo.authors}</p>
           <p className='description' dangerouslySetInnerHTML={{ __html: bookDetails.volumeInfo.description }} />
+          <button onClick={postFavorites}>Add to Favorites</button>
           <BookReviewList bookid={bookid} token={token} />
         </div>
       )}
