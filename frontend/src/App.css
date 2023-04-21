@@ -64,6 +64,8 @@ button:hover {
 
 h1{
   color: steelblue;
+  display: flex;
+  justify-content: center;
 }
 .resultsContainer {
   display: flex;

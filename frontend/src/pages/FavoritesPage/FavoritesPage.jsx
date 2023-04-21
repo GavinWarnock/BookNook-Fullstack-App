@@ -29,20 +29,22 @@ const FavoritesPage = () => {
   }, []);
 
   return (
-    <div className="favoritesList">
+    <div>
       {isLoading ? (
         <div>Loading...</div>
       ) : (
-        <div>
-          <h2>Favorites</h2>
-          <ul>
-            {favorites.map((favorite) => (
-              <li key={favorite.book_id}>
-                <img src={favorite.thumbnail_url} alt={favorite.title} />
-                <span>{favorite.title}</span>
-              </li>
-            ))}
-          </ul>
+        <div className="container">
+          <h1>Favorites</h1>
+          <div className="resultsContainer">
+            <ul>
+              {favorites.map((favorite) => (
+                <li key={favorite.book_id}>
+                  <img src={favorite.thumbnail_url} alt={favorite.title} />
+                  <span>{favorite.title}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       )}
     </div>
