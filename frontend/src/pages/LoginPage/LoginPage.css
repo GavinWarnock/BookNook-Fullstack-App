@@ -1,13 +1,28 @@
 
 
-/* .loginPage{
+.loginPage{
   background-image: url("../../Assets/Library.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
-} */
+}
 
 .error {
   color: red;
 }
 
+.logbutton {
+  background-color: transparent;
+  border: 2px solid whitesmoke;
+  color: whitesmoke;
+  font-size: 1rem;
+  font-family: inherit;
+  max-width: 100px;
+  padding: 0.5rem 0.5rem;
+}
+
+.logbutton:hover{
+    cursor: pointer;
+    color: steelblue;
+    background-color: whitesmoke;
+  }
