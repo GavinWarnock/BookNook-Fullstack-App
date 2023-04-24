@@ -9,6 +9,7 @@ const BookDetailPage = () => {
   const [bookDetails, setBookDetails] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [isFavorite, setIsFavorite] = useState(false);
+  const [isAlreadyFavorited, setIsAlreadyFavorited] = useState(false);
   const { token } = useContext(AuthContext);
 
   const fetchBookDetails = async () => {
@@ -58,22 +59,25 @@ const BookDetailPage = () => {
     }
   };
 
+  const checkFavorite = async () => {
+    try {
+      let response = await axios.get(
+        `http://127.0.0.1:5000/api/user_favorites/${bookid}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setIsFavorite(true);
+      setIsAlreadyFavorited(true);
+    } catch (error) {
+      setIsFavorite(false);
+      setIsAlreadyFavorited(false);
+    }
+  };
+
   useEffect(() => {
-    const checkFavorite = async () => {
-      try {
-        let response = await axios.get(
-          `http://127.0.0.1:5000/api/user_favorites/${bookid}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        setIsFavorite(true);
-      } catch (error) {
-        setIsFavorite(false);
-      }
-    };
     fetchBookDetails();
     checkFavorite();
   }, []);
@@ -90,13 +94,18 @@ const BookDetailPage = () => {
             alt="bookPhoto"
           />
           <p>Authors: {bookDetails.volumeInfo.authors}</p>
+          <p>Book Description:</p>
           <p
             className="description"
             dangerouslySetInnerHTML={{ __html: bookDetails.volumeInfo.description }}
           />
-          <button onClick={postFavorites}>
-            {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
-          </button>
+          {isAlreadyFavorited ? (
+            <p>This book is already favorited</p>
+          ) : (
+            <button disabled={isFavorite} onClick={postFavorites}>
+              {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
+            </button>
+          )}
           <BookReviewList bookid={bookid} token={token} />
         </div>
       )}

@@ -104,8 +104,13 @@ h1{
   height: 100%;
 }
 
-.Description{
+.description{
+  display: flex;
   font-size: var(--sm-text);
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .reviewContainer {

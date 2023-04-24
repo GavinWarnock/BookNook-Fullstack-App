@@ -26,7 +26,7 @@ const SearchPage = () => {
   };
 
   return (
-    <div className="container search">
+    <div className="container">
       <h1>What type of adventure are you looking for?</h1>
       <SearchBar
         searchTerm={searchTerm}
