@@ -9,7 +9,6 @@ const BookDetailPage = () => {
   const [bookDetails, setBookDetails] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [isFavorite, setIsFavorite] = useState(false);
-  const [isAlreadyFavorited, setIsAlreadyFavorited] = useState(false);
   const { token } = useContext(AuthContext);
 
   const fetchBookDetails = async () => {
@@ -59,53 +58,49 @@ const BookDetailPage = () => {
     }
   };
 
-  const checkFavorite = async () => {
-    try {
-      let response = await axios.get(
-        `http://127.0.0.1:5000/api/user_favorites/${bookid}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      setIsFavorite(true);
-      setIsAlreadyFavorited(true);
-    } catch (error) {
-      setIsFavorite(false);
-      setIsAlreadyFavorited(false);
-    }
-  };
-
   useEffect(() => {
+    const checkFavorite = async () => {
+      try {
+        let response = await axios.get(
+          `http://127.0.0.1:5000/api/user_favorites/${bookid}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setIsFavorite(true);
+      } catch (error) {
+        setIsFavorite(false);
+      }
+    };
     fetchBookDetails();
     checkFavorite();
   }, []);
 
   return (
-    <div className="resultsList">
+    <div>
       {isLoading ? (
         <div>Loading...</div>
       ) : (
         <div>
-          <h2>{bookDetails.volumeInfo.title}</h2>
-          <img
-            src={bookDetails.volumeInfo.imageLinks.small}
-            alt="bookPhoto"
-          />
-          <p>Authors: {bookDetails.volumeInfo.authors}</p>
-          <p>Book Description:</p>
+          <div className="resultsList">
+            <h2>{bookDetails.volumeInfo.title}</h2>
+            <div>
+              <img
+                src={bookDetails.volumeInfo.imageLinks.small}
+                alt="bookPhoto"
+              />
+            </div>
+            <p>Authors: {bookDetails.volumeInfo.authors}</p>
+          </div>
           <p
             className="description"
             dangerouslySetInnerHTML={{ __html: bookDetails.volumeInfo.description }}
           />
-          {isAlreadyFavorited ? (
-            <p>This book is already favorited</p>
-          ) : (
-            <button disabled={isFavorite} onClick={postFavorites}>
-              {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
-            </button>
-          )}
+          <button onClick={postFavorites} style={{ textAlign: "center", display: "block", margin: "auto" }}>
+            {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
+          </button>
           <BookReviewList bookid={bookid} token={token} />
         </div>
       )}
